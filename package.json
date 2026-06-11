@@ -3,7 +3,7 @@
   "displayName": "Local Inline Suggestions",
   "description": "Ghost-text completions from any OpenAI-compatible local LLM (Ollama, LM Studio, llama.cpp)",
   "version": "0.1.0",
-  "publisher": "mlutz",
+  "publisher": "odlot-marco-lutz",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",

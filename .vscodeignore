@@ -2,6 +2,8 @@ src/**
 node_modules/**
 out/**
 .vscode/**
+.claude/**
+.github/**
 esbuild.mjs
 tsconfig.json
 .gitignore
