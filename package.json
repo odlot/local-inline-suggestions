@@ -1,0 +1,91 @@
+{
+  "name": "local-inline-suggestions",
+  "displayName": "Local Inline Suggestions",
+  "description": "Ghost-text completions from any OpenAI-compatible local LLM (Ollama, LM Studio, llama.cpp)",
+  "version": "0.1.0",
+  "publisher": "mlutz",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odlot/local-inline-suggestions.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "local-inline-suggestions.toggle",
+        "title": "Local Inline Suggestions: Toggle On/Off"
+      }
+    ],
+    "configuration": {
+      "title": "Local Inline Suggestions",
+      "properties": {
+        "localInlineSuggestions.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable inline suggestions."
+        },
+        "localInlineSuggestions.endpointUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Base URL of the OpenAI-compatible endpoint (e.g. http://localhost:11434 for Ollama, http://localhost:1234 for LM Studio)."
+        },
+        "localInlineSuggestions.model": {
+          "type": "string",
+          "default": "codellama:7b",
+          "description": "Model name to pass in the request body."
+        },
+        "localInlineSuggestions.maxTokens": {
+          "type": "number",
+          "default": 100,
+          "minimum": 1,
+          "maximum": 2048,
+          "description": "Maximum number of tokens to generate."
+        },
+        "localInlineSuggestions.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Sampling temperature (lower = more focused)."
+        },
+        "localInlineSuggestions.debounceMs": {
+          "type": "number",
+          "default": 350,
+          "minimum": 50,
+          "maximum": 5000,
+          "description": "Milliseconds to wait after the last keystroke before querying the LLM."
+        },
+        "localInlineSuggestions.maxPrefixChars": {
+          "type": "number",
+          "default": 8000,
+          "minimum": 500,
+          "maximum": 64000,
+          "description": "Maximum number of characters to send as context prefix (~2k tokens at default)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "package": "node esbuild.mjs --production && npx @vscode/vsce package --no-dependencies",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}
